@@ -1,0 +1,41 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>title1</title>
+    <style type="text/css">
+    </style>
+    <script>
+        function apply_onclick() {
+            alert(1);
+        }
+    </script>
+</head>
+<body>
+    <div id="checkboxStatusApp">
+    </div>
+    <script type="text/template" id="checkboxListAppTemplate">
+        <div id="checkboxAll">
+        </div>
+        <div id="checkboxList">
+        </div>
+        <button id="cancel">Cancel</button>
+        <button id="apply">Apply</button>
+    </script>
+    <script type="text/template" id="checkboxItemTemplate">
+        <input type="checkbox" <%= checked ? 'checked' : '' %> /><%= title %>
+    </script>
+    <script type="text/template" id="checkboxAllTemplate">
+        <input type="checkbox" <%= isAll ? 'checked' : '' %> />All
+    </script>
+    <script src="lib/jquery-2.1.1.min.js"></script>
+    <script src="lib/underscore-min.js"></script>
+    <script src="lib/backbone-min.js"></script>
+    <script src="js/checkboxItemModel.js"></script>
+    <script src="js/checkboxCollection.js"></script>
+    <script src="js/checkboxAllView.js"></script>
+    <script src="js/checkboxItemView.js"></script>
+    <script src="js/checkboxStatusAppView.js"></script>
+    <script src="js/app.js"></script>
+</body>
+</html>
