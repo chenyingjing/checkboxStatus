@@ -21,5 +21,7 @@
         //alert(1);
         this.render();
         this.checkboxAllView.render();
+        this.applyButtonView.render();
+        this.cancelButtonView.render();
     },
 });
