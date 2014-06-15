@@ -2,15 +2,10 @@
     el: "#checkboxAll",
     template: _.template($("#checkboxAllTemplate").html()),
     render: function () {
-        var isAll = checkboxList.every(function (item) {
-            return item.get('checked');
-        });
+        var isAll = this.parent.isAllSelected();
+
         this.$el.html(this.template({ isAll: isAll }));
         return this;
-    },
-
-    initialize: function () {
-        this.render();
     },
 
     events: {
@@ -18,8 +13,6 @@
     },
 
     checkboxAll_onclick: function () {
-        checkboxList.each(function (ckbxItemModel) {
-            ckbxItemModel.set('checked', true);
-        });
+        this.parent.selectAll();
     },
 });

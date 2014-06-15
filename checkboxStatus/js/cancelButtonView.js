@@ -10,27 +10,11 @@
     },
 
     cancel_onclick: function () {
-        //alert("cancel");
-        previousCheckboxList.each(function (ckbxItemModel) {
-            var title = ckbxItemModel.get("title");
-            var checked = ckbxItemModel.get("checked");
-            var item = checkboxList.findWhere({ title: title });
-            if (!_.isNull(item)) {
-                item.set("checked", checked);
-            }
-        });
-        //_.each(previousCheckboxModelArray, function (ckbxItemModel) {
-        //    var title = ckbxItemModel.get("title");
-        //    var checked = ckbxItemModel.get("checked");
-        //    var item = checkboxList.findWhere({ title: title });
-        //    if (!_.isNull(item)) {
-        //        item.set("checked", checked);
-        //    }
-        //});
+        this.parent.cancelTheStatus();
     },
 
     render: function () {
-        this.el.disabled = previousStatusEqualsCurrent();
+        this.el.disabled = this.parent.previousStatusEqualsCurrent();
         return this;
     },
 

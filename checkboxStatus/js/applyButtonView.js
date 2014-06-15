@@ -10,21 +10,9 @@
     },
 
     apply_onclick: function () {
-        var msg = '';
-        checkboxList.each(function (ckbxItemModel) {
-            var title = ckbxItemModel.get('title');
-            var checked = ckbxItemModel.get('checked');
-            var itemMsg = title + ':' + checked + '\n';
-            msg += itemMsg;
-        });
-        alert(msg);
+        this.parent.showCurrentStatus();//TODO
         this.applyButtonClicked = true;
-
-        previousCheckboxList.reset();
-        checkboxList.each(function (ckbxItemModel) {
-            previousCheckboxList.push(ckbxItemModel.clone());
-        });
-
+        this.parent.copyCurrentToPrevious();
         this.render();
         this.cancelButtonView.render();
     },
@@ -34,9 +22,8 @@
         if (!this.applyButtonClicked) {
             applyEnabled = true;
         } else {
-            applyEnabled = !previousStatusEqualsCurrent();
+            applyEnabled = !this.parent.previousStatusEqualsCurrent();
         }
-        //this.$el.html(this.template({ applyDisabled: !applyEnabled }));
         this.el.disabled = !applyEnabled;
 
         return this;
