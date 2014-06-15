@@ -1,4 +1,4 @@
-﻿var previousCheckboxModelArray = [];
+﻿//var previousCheckboxModelArray = [];
 
 var checkboxStatusAppView = Backbone.View.extend({
     el: "#checkboxStatusApp",
@@ -14,28 +14,37 @@ var checkboxStatusAppView = Backbone.View.extend({
         //"click #cancel": "cancel_onclick",
     },
 
+    renderSubController: function () {
+        this.checkboxAllView.render();
+        this.applyButtonView.render();
+        this.cancelButtonView.render();
+    },
 
     initialize: function () {
         console.log("initialize");
 
         this.render();
 
-        var checkboxAllView = new CheckboxAllView();
-        var applyButtonView = new ApplyButtonView();
-        var cancelButtonView = new CancelButtonView();
-        applyButtonView.cancelButtonView = cancelButtonView;
+        this.checkboxAllView = new CheckboxAllView();
+        this.applyButtonView = new ApplyButtonView();
+        this.cancelButtonView = new CancelButtonView();
+        this.applyButtonView.cancelButtonView = this.cancelButtonView;//TODO:
 
         var rCkbxItemModel = new CheckBoxItemModel({ title: 'Red', checked: true });
         var gCkbxItemModel = new CheckBoxItemModel({ title: 'Green', checked: true });
         var bCkbxItemModel = new CheckBoxItemModel({ title: 'Blue', checked: true });
         checkboxList.reset([rCkbxItemModel, gCkbxItemModel, bCkbxItemModel]);
+
+        var that = this;
         checkboxList.each(function (ckbxItemModel) {
             var view = new CheckboxItemView({ model: ckbxItemModel });
-            view.checkboxAllView = checkboxAllView;//TODO:
-            view.applyButtonView = applyButtonView;
-            view.cancelButtonView = cancelButtonView;
+            view.parent = that;
             $('#checkboxList').append(view.render().el);
-            previousCheckboxModelArray.push(ckbxItemModel.clone());
+            previousCheckboxList.push(ckbxItemModel.clone());
         });
     },
+
+    ss: 'xx',
+
+
 });

@@ -1,1 +1,1 @@
-﻿new checkboxStatusAppView();
+﻿var appView = new checkboxStatusAppView();

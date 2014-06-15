@@ -20,9 +20,9 @@
         alert(msg);
         this.applyButtonClicked = true;
 
-        previousCheckboxModelArray.length = 0;
+        previousCheckboxList.reset();
         checkboxList.each(function (ckbxItemModel) {
-            previousCheckboxModelArray.push(ckbxItemModel.clone());
+            previousCheckboxList.push(ckbxItemModel.clone());
         });
 
         this.render();
@@ -34,7 +34,7 @@
         if (!this.applyButtonClicked) {
             applyEnabled = true;
         } else {
-            applyEnabled = !this.previousStatusEqualsCurrent();
+            applyEnabled = !previousStatusEqualsCurrent();
         }
         //this.$el.html(this.template({ applyDisabled: !applyEnabled }));
         this.el.disabled = !applyEnabled;
@@ -42,20 +42,6 @@
         return this;
     },
 
-    previousStatusEqualsCurrent: function () {
-        var isEqual = true;
-        for (var ckbxItemModel in previousCheckboxModelArray) {
-            var title = previousCheckboxModelArray[ckbxItemModel].get("title");
-            var checked = previousCheckboxModelArray[ckbxItemModel].get("checked");
-            var item = checkboxList.findWhere({ title: title });
-            if (_.isNull(item)) {
-                return false;
-            }
-            if (item.get("checked") != checked) {
-                return false;
-            }
-        }
-        return isEqual;
-    },
+
 
 });
